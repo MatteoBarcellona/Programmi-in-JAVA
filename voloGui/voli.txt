@@ -1,0 +1,17 @@
+Elenco dei Voli:
+========================
+Codice Volo: 123
+Destinazione: torino
+Data: Tue Jul 22 00:00:00 CEST 2025
+Posti Disponibili: 40
+========================
+Codice Volo: 345
+Destinazione: napoli
+Data: Tue Sep 30 00:00:00 CEST 2025
+Posti Disponibili: 56
+========================
+Codice Volo: 234
+Destinazione: roma
+Data: Sun Nov 11 00:00:00 CET 2029
+Posti Disponibili: 700
+========================
