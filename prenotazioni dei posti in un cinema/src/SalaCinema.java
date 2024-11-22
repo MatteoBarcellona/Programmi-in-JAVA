@@ -1,36 +1,42 @@
 public class SalaCinema {
     private Posto[][] posti;
 
-    public SalaCinema(int file, int postiPerFila) {
-        posti = new Posto[file][postiPerFila];
-        for (int i = 0; i < file; i++) {
-            for (int j = 0; j < postiPerFila; j++) {
-                posti[i][j] = new Posto(i + 1, j + 1);
+    public SalaCinema(int numFile, int numPostiPerFila) {
+        posti = new Posto[numFile][numPostiPerFila];
+        for (int i = 0; i < numFile; i++) {
+            for (int j = 0; j < numPostiPerFila; j++) {
+                posti[i][j] = new Posto(i + 1, j + 1); // Fila e posto partono da 1
             }
         }
     }
 
     public void prenotaPosto(int fila, int numero) {
-        if (isValidPosto(fila, numero)) {
-            Posto posto = posti[fila - 1][numero - 1];
-            if (!posto.isOccupato()) {
-                posto.prenota();
-                System.out.println("prenotazione fatto");
-            } else {
-                System.out.println("errore: il posto è già occupato.");
-            }
+        if (fila <= 0 || fila > posti.length || numero <= 0 || numero > posti[0].length) {
+            System.out.println("errore: il posto specificato non esiste.");
+            return;
+        }
+
+        Posto posto = posti[fila - 1][numero - 1];
+        if (posto.isOccupato()) {
+            System.out.println("errore: il posto fila " + fila + " posto " + numero + " è già prenotato.");
+        } else {
+            posto.prenota();
+            System.out.println("posto fila " + fila + " posto " + numero + " prenotato con successo!");
         }
     }
 
     public void annullaPrenotazionePosto(int fila, int numero) {
-        if (isValidPosto(fila, numero)) {
-            Posto posto = posti[fila - 1][numero - 1];
-            if (posto.isOccupato()) {
-                posto.annullaPrenotazione();
-                System.out.println("prenotazione annullata");
-            } else {
-                System.out.println("errore: il posto è già libero.");
-            }
+        if (fila <= 0 || fila > posti.length || numero <= 0 || numero > posti[0].length) {
+            System.out.println("errore: il posto specificato non esiste.");
+            return;
+        }
+
+        Posto posto = posti[fila - 1][numero - 1];
+        if (!posto.isOccupato()) {
+            System.out.println("errore: il posto fila " + fila + " posto " + numero + " è già libero.");
+        } else {
+            posto.annullaPrenotazione();
+            System.out.println("prenotazione del posto fila " + fila + " posto " + numero + " annullata con successo!");
         }
     }
 
@@ -39,17 +45,9 @@ public class SalaCinema {
         for (int i = 0; i < posti.length; i++) {
             System.out.print("Fila " + (i + 1) + ": ");
             for (int j = 0; j < posti[i].length; j++) {
-                System.out.print(posti[i][j].toString() + " ");
+                System.out.print(posti[i][j].isOccupato() ? "X " : "O ");
             }
             System.out.println();
         }
-    }
-
-    private boolean isValidPosto(int fila, int numero) {
-        if (fila <= 0 || fila > posti.length || numero <= 0 || numero > posti[0].length) {
-            System.out.println("er  rore: fila o numero del posto non valido.");
-            return false;
-        }
-        return true;
     }
 }
