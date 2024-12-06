@@ -1,0 +1,8 @@
+=== Report del Torneo ===
+
+Classifica:
+Squadra              Punti      Differenza Reti Gol Fatti 
+cvc                  0          16              41        
+cvcv                 0          -16             25        
+
+Partite giocate:
