@@ -1,0 +1,41 @@
+spring:
+  connectors:
+    jpaConfigurations:
+      connection:
+        url: http://nourl  # URL simulato, placeholder
+        driver-class-name: ${DATASOURCE_COMI0_URL}  # Variabile di connessione mockata
+        username: http://nourl  # Username mockato
+        password: http://nourl  # Password mockata
+        timeout: 15000  # Timeout connessione
+        hibernateDialect: org.hibernate.dialect.Oracle10gDialect  # Dialetto Oracle
+        connectionPoolSize: 5  # Pool di connessioni simulato
+        hbm2ddl: none  # Non generare tabelle automaticamente
+        show-sql: true  # Mostra le query SQL eseguite
+        mocked: true  # Connessione mockata
+        nativeSettings:
+          maxLifetime: 30000  # Durata connessione
+          keepaliveTime: 30000  # Mantenimento connessione
+        hibernateNativeSettings:
+          show_sql: true  # Mostra SQL Hibernate
+        path: oracle  # Cartella per gli script SQL
+        files:
+          - users_data.sql  # Aggiungerò il file SQL con i dati dell'utente
+        repositories:
+          - UserRepository  # Il repository per i dati degli utenti
+
+    jdbcConfigurations:
+      items:
+        GroupsConnector:
+          uri: ${DATASOURCE_CDJA0_URL}  # URL mockato
+          username: ${DATASOURCE_CDJA0_USERNAME}  # Username mockato
+          password: ${DATASOURCE_CDJA0_PASSWORD}  # Password mockata
+          dataSourceType: ucp  # Tipo di datasource Oracle
+          driver-class-name: oracle.jdbc.pool.OracleDataSource  # Driver per Oracle
+          timeout: 6000  # Timeout
+          mocked: true  # Connessione mockata
+          poolNativeSettings:
+            maxLifetime: 30000  # Durata massima connessione
+            keepaliveTime: 30000  # Tempo di mantenimento della connessione
+          path: tables  # Percorso per altri script SQL, se necessari
+          files:
+            - tables.sql  # Script per le tabelle, se richieste
